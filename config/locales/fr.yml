@@ -1,7 +1,7 @@
 fr:
   grape:
     errors:
-      format: ! '%{attributes} %{message}'
+      format: ! '%{attributes} toto %{message}'
       messages:
         coerce: 'is invalid'
         presence: 'est manquant'

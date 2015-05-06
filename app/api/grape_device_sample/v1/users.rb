@@ -3,7 +3,9 @@ module GrapeDeviceSample
     class Users < Grape::API
       include GrapeDeviceSample::V1::Defaults
 
+
       resource :users do
+
         desc "Return list of users"
         get do
           authenticate!
@@ -27,14 +29,18 @@ module GrapeDeviceSample
           requires :password_confirmation, type: String
         end
         post do
-          User.create!({
+          user = User.create({
             email: params[:email],
             password: params[:password],
             password_confirmation: params[:password_confirmation]
           })
+          error!("hey", 400) unless user.valid?
         end
 
         desc "Update a user"
+        params do
+          optional :email, type: String
+        end
         put ':id' do
           User.find(params[:id]).update({
             email: params[:email]

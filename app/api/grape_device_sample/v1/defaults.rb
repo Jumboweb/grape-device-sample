@@ -8,21 +8,10 @@ module GrapeDeviceSample
         format :json
         prefix :api
 
-        # global handler for simple not found case
-        rescue_from ActiveRecord::RecordNotFound do |e|
-          error_response(message: e.message, status: 404)
-        end
-
-        # global handler for simple not found case
-        rescue_from ActiveRecord::RecordInvalid do |e|
-          error_response(message: e.message, status: 500)
-        end
-
         # global exception handler, used for error notifications
         rescue_from :all do |e|
-          error_response(message: e.message, status: 500)
           if Rails.env.development?
-            raise e
+            error_response(message: e.message, status: 500)
           else
             error_response(message: "Internal server error", status: 500)
           end
