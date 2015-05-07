@@ -29,6 +29,7 @@ gem 'grape-entity'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
 gem "hashie-forbidden_attributes"
+gem 'rack-cors'
 
 
 # Use ActiveModel has_secure_password

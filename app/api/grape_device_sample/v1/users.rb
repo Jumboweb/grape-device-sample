@@ -8,7 +8,7 @@ module GrapeDeviceSample
 
         desc "Return list of users"
         get do
-          authenticate!
+          # authenticate!
           User.all
         end
 
